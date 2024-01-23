@@ -7,10 +7,51 @@
 </ion-header>
 
 <ion-content class="ion-padding" [fullscreen]="true">
-  
-  <table class="calc_table">
+
+  <div class="container">
+
+    <!-- <div class="innercontainer"> -->
+      <div class="row displayResult">
+        <span>{{display}}</span>
+      </div>
+
+      <div class="row">
+        <ion-button class="action_btn" (click)="clearDisplay()">C</ion-button>
+        <ion-button class="action_btn" (click)="backspace()"><ion-icon name="arrow-back-outline"></ion-icon></ion-button>
+        <ion-button class="action_btn" (click)="appendToDisplay('/')">/</ion-button>
+        <ion-button class="action_btn" (click)="appendToDisplay('*')"><ion-icon name="close-outline"></ion-icon></ion-button>
+      </div>
+
+      <div class="row">
+        <ion-button (click)="appendToDisplay('7')">7</ion-button>
+        <ion-button (click)="appendToDisplay('8')">8</ion-button>
+        <ion-button (click)="appendToDisplay('9')">9</ion-button>
+        <ion-button class="action_btn" (click)="appendToDisplay('-')"><ion-icon name="remove-outline"
+            aria-hidden="true"></ion-icon></ion-button>
+      </div>
+
+      <div class="row">
+        <ion-button (click)="appendToDisplay('4')">4</ion-button>
+        <ion-button (click)="appendToDisplay('5')">5</ion-button>
+        <ion-button (click)="appendToDisplay('6')">6</ion-button>
+        <ion-button class="action_btn" (click)="appendToDisplay('+')">+</ion-button>
+
+      </div>
+
+      <div class="row">
+        <ion-button (click)="appendToDisplay('00')">00</ion-button>
+        <ion-button (click)="appendToDisplay('0')">0</ion-button>
+        <ion-button (click)="appendToDisplay('.')">.</ion-button>
+        <ion-button class="action_btn result_btn" (click)="calculate()"><ion-icon name="reorder-two-outline"></ion-icon></ion-button>
+      </div>
+    <!-- </div> -->
+
+
+  </div>
+
+  <!-- <table class="calc_table">
     <tr>
-      <td colspan="4"><ion-input type="text" id="display" [value]="display" readonly style="text-align: right;"></ion-input></td>
+      <td colspan="4" class="displayResult">{{display}}</td>
     </tr>
 
     <tr>
@@ -47,5 +88,5 @@
           <td><ion-button (click)="appendToDisplay('.')">.</ion-button></td>
           <td><ion-button (click)="calculate()"><ion-icon name="reorder-two-outline"></ion-icon></ion-button></td>
     </tr>
-  </table>
+  </table> -->
 </ion-content>
