@@ -17,14 +17,21 @@ export class HomePage {
   }
 
   display: string = '0';
+  zeroRegex: RegExp = /^[0]+$/;
+  operatorMatch: RegExp = /[+\-*.\/]/;
 
   appendToDisplay(value: string) {
     if(this.display == '0') {
-      const regex = /^[0]+$/;
-      if(regex.test(value)) {
+      if(this.zeroRegex.test(value)) {
         value = '0';
       }
-      this.display = '';
+      if(!this.operatorMatch.test(value)) {
+        this.display = '';
+      }
+    }
+
+    if(this.operatorMatch.test(value)) {
+      this.validateLastElement();
     }
     this.display += value;
   }
@@ -35,7 +42,8 @@ export class HomePage {
 
   calculate() {
     try {
-      this.display = eval(this.display);
+      this.validateLastElement();
+      this.display = eval(this.display).toString();
     } catch (error) {
       this.display = 'Error';
     }
@@ -46,6 +54,12 @@ export class HomePage {
       this.display = '0';
     } else {
       this.display = this.display.slice(0, -1);
+    }
+  }
+
+  validateLastElement() {
+    if(this.operatorMatch.test(this.display.slice(-1))) {
+      this.backspace();
     }
   }
 }
