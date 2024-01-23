@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "512884817550",
+    "project_id": "calculator-84",
+    "storage_bucket": "calculator-84.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512884817550:android:ccdbb42d1543f9150b93df",
+        "android_client_info": {
+          "package_name": "com.sabid.calculator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArNAJYwsEOxE25qkC1IijJBK-soHYRzUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

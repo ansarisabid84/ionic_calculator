@@ -1,13 +1,51 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { FormsModule } from '@angular/forms';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonInput, IonIcon } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { add, removeOutline, closeOutline, arrowBackOutline, reorderTwoOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, FormsModule, IonButton, IonInput, IonIcon],
 })
 export class HomePage {
-  constructor() {}
+  constructor() {
+    addIcons({add, removeOutline, closeOutline, arrowBackOutline, reorderTwoOutline});
+  }
+
+  display: string = '0';
+
+  appendToDisplay(value: string) {
+    if(this.display == '0') {
+      const regex = /^[0]+$/;
+      if(regex.test(value)) {
+        value = '0';
+      }
+      this.display = '';
+    }
+    this.display += value;
+  }
+
+  clearDisplay() {
+    this.display = '0';
+  }
+
+  calculate() {
+    try {
+      this.display = eval(this.display);
+    } catch (error) {
+      this.display = 'Error';
+    }
+  }
+
+  backspace() {
+    if(this.display.length == 1){
+      this.display = '0';
+    } else {
+      this.display = this.display.slice(0, -1);
+    }
+  }
 }
