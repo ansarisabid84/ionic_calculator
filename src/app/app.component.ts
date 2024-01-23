@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
+import { App } from '@capacitor/app';
+import { IonApp, IonRouterOutlet, Platform, ToastController } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,31 @@ import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
   imports: [IonApp, IonRouterOutlet],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(
+    private platform: Platform,
+    private toastController: ToastController,
+  ) {
+    var backButtonCount: number = 1;
+    this.platform.backButton.subscribeWithPriority(10, async () => {
+      if (backButtonCount--) {
+        this.presentToast("Press back again to exit");
+        setTimeout(() => {
+          backButtonCount = 1;
+        }, 3000);
+      } else
+        App.exitApp();
+    });
+  }
+
+  async presentToast(message: string, duration = 2500) {
+    const toast = await this.toastController.create({
+      cssClass: 'back-button-toast-custom-class',
+      message: message,
+      duration: duration,
+      mode: "ios",
+      position: "top",
+    });
+    toast.present();
+  }
+  
 }
