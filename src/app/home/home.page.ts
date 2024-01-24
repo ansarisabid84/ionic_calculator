@@ -43,7 +43,7 @@ export class HomePage {
   calculate() {
     try {
       this.validateLastElement();
-      this.display = eval(this.display).toString();
+      this.display = (0, eval)(this.display).toString();
     } catch (error) {
       this.display = 'Error';
     }
