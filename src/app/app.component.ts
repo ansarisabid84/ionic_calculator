@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { App } from '@capacitor/app';
 import { IonApp, IonRouterOutlet, Platform, ToastController } from '@ionic/angular/standalone';
 
@@ -9,10 +9,10 @@ import { IonApp, IonRouterOutlet, Platform, ToastController } from '@ionic/angul
   imports: [IonApp, IonRouterOutlet],
 })
 export class AppComponent {
-  constructor(
-    private platform: Platform,
-    private toastController: ToastController,
-  ) {
+  private platform = inject(Platform);
+  private toastController = inject(ToastController);
+  
+  constructor() {
     var backButtonCount: number = 1;
     this.platform.backButton.subscribeWithPriority(10, async () => {
       if (backButtonCount--) {
